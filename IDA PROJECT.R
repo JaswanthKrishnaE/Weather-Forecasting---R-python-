@@ -6,6 +6,7 @@ weather.data <- read.csv("DailyDelhiClimateTrain.csv")
 library(ggplot2) 
 library(corrplot) 
 library(modelr) 
+library(fpp2)
 #functions 
 #linear regression function 
 LinearRegression<-function(x,y,test.data){ 
@@ -115,6 +116,92 @@ corrplot(data_cor, method="circle")
 corrplot(data_cor, method="number") 
 corrplot(data_cor, type="upper", order="hclust") 
 
+data<-weather.data
+plot<-head(data,365)
+ggplot(data = plot, aes(x = date, y = meantemp)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Mean Temperature ",
+       x = "Year - 2013", y = "Mean Temperature")
+
+ggplot(data = plot, aes(x = date, y = humidity)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Humidity ",
+       x = "Date-2013", y = "Humidity")
+
+ggplot(data = plot, aes(x = date, y = wind_speed)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "wind Speed ",
+       x = "Date - 2013", y = " wind Speed")
+ggplot(data = plot, aes(x = date, y = meantemp)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Mean pressure ",
+       x = "Year - 2013", y = "Mean pressure")
+summary(plot)
+
+plot<-data[366:730,]
+ggplot(data = plot, aes(x = date, y = meantemp)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Mean Temperature ",
+       x = "Year - 2014", y = "Mean Temperature")
+
+ggplot(data = plot, aes(x = date, y = humidity)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Humidity ",
+       x = "Date-2014", y = "Humidity")
+
+ggplot(data = plot, aes(x = date, y = wind_speed)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "wind Speed ",
+       x = "Date - 2014", y = " wind Speed")
+ggplot(data = plot, aes(x = date, y = meantemp)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Mean pressure ",
+       x = "Year - 2014", y = "Mean pressure")
+summary(plot)
+
+plot<-data[731:1095,]
+ggplot(data = plot, aes(x = date, y = meantemp)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Mean Temperature ",
+       x = "Year - 2015", y = "Mean Temperature")
+
+ggplot(data = plot, aes(x = date, y = humidity)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Humidity ",
+       x = "Date-2015", y = "Humidity")
+
+ggplot(data = plot, aes(x = date, y = wind_speed)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "wind Speed ",
+       x = "Date - 2015", y = " wind Speed")
+ggplot(data = plot, aes(x = date, y = meantemp)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Mean pressure ",
+       x = "Year - 2015", y = "Mean pressure")
+summary(plot)
+
+
+plot<-data[1096:1461,]
+ggplot(data = plot, aes(x = date, y = meantemp)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Mean Temperature ",
+       x = "Year - 2016", y = "Mean Temperature")
+
+ggplot(data = plot, aes(x = date, y = humidity)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Humidity ",
+       x = "Date-2016", y = "Humidity")
+
+ggplot(data = plot, aes(x = date, y = wind_speed)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "wind Speed ",
+       x = "Date - 2016", y = " wind Speed")
+ggplot(data = plot, aes(x = date, y = meantemp)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Mean pressure ",
+       x = "Year - 2016", y = "Mean pressure")
+summary(plot)
+
 weather.data<-subset(weather.data,select=-c(meanpressure)) 
 
 #linear regression using inbiuilt function 
@@ -215,3 +302,24 @@ modelr::rsquare(weather.df.nls,weather.df)
 pred<-predict(weather.df.nls,test.df, interval = "confidence")  
 plot(test.df) 
 lines(x = test.df[,1],y = pred)
+
+######################
+
+ggplot(data = weather.data, aes(x = date, y = meantemp)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Mean Temperature ",
+       x = "Date", y = "Daily Precipitation (Inches)")
+
+ggplot(data = weather.data, aes(x = date, y = humidity)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Mean Temperature ",
+       x = "Date", y = "Daily Precipitation (Inches)")
+
+ggplot(data = weather.data, aes(x = date, y = wind_speed)) +
+  geom_bar(stat = "identity", fill = "purple") +
+  labs(title = "Mean Temperature ",
+       x = "Date", y = "Daily Precipitation (Inches)")
+
+
+
+
